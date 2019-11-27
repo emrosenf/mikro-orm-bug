@@ -17,6 +17,10 @@ const main = async () => {
     debug: true,
   });
 
+  // For debugging purposes, assign an id
+  // @ts-ignore
+  orm.em.id = 'global'
+
   const app = express();
   // app.use((req, res, next) => {
   //   console.log('running middleware')
@@ -29,10 +33,22 @@ const main = async () => {
       resolvers: [UserResolver]
     }),
     context: ({ req, res }) => {
+      const em = orm.em.fork()
+      // if this line is uncommented, the expected behavior will result
+      // this demonstrates that the wrap(entity).__em is picking up the
+      // global em instance
+      // Alternatively, set a breakpoint at EntityAssigner:10 and examine
+      // the 'id' of wrap(element).__em on the second request and you will
+      // see it is the 'global' one
+      // orm.em.clear()
+
+      // For debugging purposes, assign an id
+      // @ts-ignore
+      em.id = 'request'
       return {
         req,
         res,
-        em: orm.em.fork(),
+        em,
       }
     }
   });
