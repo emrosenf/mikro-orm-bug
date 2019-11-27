@@ -1,0 +1,26 @@
+{
+  "name": "mikro-orm-bug",
+  "license": "MIT",
+  "engines": {
+    "node": "10.x"
+  },
+  "scripts": {
+    "start": "ts-node-dev --inspect --no-notify --respawn --transpileOnly ./src"
+  },
+  "dependencies": {
+    "apollo-server-express": "^2.9.9",
+    "cuid": "^2.1.6",
+    "express": "^4.17.1",
+    "graphql": "^14.5.8",
+    "mikro-orm": "^3.0.0-rc",
+    "reflect-metadata": "^0.1.13",
+    "sqlite3": "^4.1.0",
+    "type-graphql": "^0.17.5"
+  },
+  "devDependencies": {
+    "@types/node": "^12.12.12",
+    "ts-node": "^8.5.2",
+    "ts-node-dev": "1.0.0-pre.44",
+    "typescript": "3.7.2"
+  }
+}
